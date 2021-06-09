@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mpontom_suite_poc/src/ui/pages/login_page.dart';
-import 'package:mpontom_suite_poc/src/ui/pages/splash_screen.dart';
+import 'package:mpontom_suite_poc/src/routes/app_page_router.dart';
+import 'package:mpontom_suite_poc/src/routes/app_routes.dart';
+import 'package:shared/shared.dart';
 
 class App extends StatelessWidget {
   @override
@@ -9,13 +10,10 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'MpontoM Suite POC',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: createMaterialColor(margemPrimaryColor),
       ),
-      routes: {
-        SplashScreen.routeName: (context) => SplashScreen(),
-        LoginPage.routeName: (context) => LoginPage(),
-      },
-      initialRoute: SplashScreen.routeName,
+      onGenerateRoute: AppPageRouter.generateRoute,
+      initialRoute: Routes.SPLASH,
     );
   }
 }
