@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:shared/shared.dart';
+import 'package:shared/shared.dart' show margemPrimaryColor;
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+class RecoverPasswordPage extends StatefulWidget {
+  const RecoverPasswordPage({Key? key}) : super(key: key);
 
   @override
-  _SignInPageState createState() => _SignInPageState();
+  _RecoverPasswordPageState createState() => _RecoverPasswordPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
   List<String> description = [
-    'Agende uma demonstração!',
-    'Envie uma mensagem e iremos te',
-    'retornar rapidinho!'
+    'Informe o e-mail cadastrado abaixo e',
+    'vamos te enviar uma nova senha',
   ];
 
   @override
@@ -24,7 +23,7 @@ class _SignInPageState extends State<SignInPage> {
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Text(
-          'Seja MpontoM!',
+          'Recuperar Senha',
           style: TextStyle(color: margemPrimaryColor),
         ),
       ),
@@ -33,24 +32,13 @@ class _SignInPageState extends State<SignInPage> {
           return Padding(
             padding: EdgeInsets.symmetric(
               vertical: constraints.maxHeight * .05,
-              horizontal: constraints.maxWidth * .1,
+              horizontal: constraints.maxWidth * .13,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 buildDescription,
-                SizedBox(height: constraints.maxHeight * .03),
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    contentPadding: EdgeInsets.fromLTRB(6, 4, 6, 4),
-                    prefixIcon: Icon(Icons.person_outline_rounded),
-                    hintText: 'Nome',
-                  ),
-                ),
-                SizedBox(height: constraints.maxHeight * .02),
+                SizedBox(height: constraints.maxHeight * .08),
                 TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -61,18 +49,7 @@ class _SignInPageState extends State<SignInPage> {
                     hintText: 'E-mail',
                   ),
                 ),
-                SizedBox(height: constraints.maxHeight * .02),
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    contentPadding: EdgeInsets.fromLTRB(6, 4, 6, 4),
-                    prefixIcon: Icon(Icons.phone_outlined),
-                    hintText: 'Telefone',
-                  ),
-                ),
-                SizedBox(height: constraints.maxHeight * .02),
+                SizedBox(height: constraints.maxHeight * .04),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: margemPrimaryColor,

@@ -36,11 +36,11 @@ class _PreAuthPageState extends State<PreAuthPage> {
                     ),
                     child: Text('ENTRAR'),
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.LOGIN);
+                      Navigator.pushReplacementNamed(context, Routes.LOGIN);
                     },
                   ),
                   SizedBox(
-                    height: constraints.maxHeight * .01,
+                    height: constraints.maxHeight * .02,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(

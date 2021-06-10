@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mpontom_suite_poc/src/routes/app_routes.dart';
 import 'package:shared/shared.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
-                  vertical: constraints.maxHeight * .1,
+                  vertical: constraints.maxHeight * .08,
                 ),
                 child: DefaultLogo(),
               ),
@@ -38,16 +39,18 @@ class _LoginPageState extends State<LoginPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
+                  contentPadding: EdgeInsets.fromLTRB(6, 4, 6, 4),
                   prefixIcon: Icon(Icons.email_outlined),
                   hintText: 'E-mail',
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: constraints.maxHeight * .02),
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
+                  contentPadding: EdgeInsets.fromLTRB(6, 4, 6, 4),
                   prefixIcon: Icon(Icons.lock_outlined),
                   hintText: 'Senha',
                   suffixIcon: Icon(
@@ -55,16 +58,21 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text('Esqueceu a senha?'),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  MaterialButton(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    enableFeedback: false,
+                    child: Text('Esqueceu a senha?'),
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.RECOVER_PASSWORD);
+                    },
+                  ),
+                ],
               ),
-              SizedBox(height: 15),
+              SizedBox(height: constraints.maxHeight * .02),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: margemPrimaryColor,
