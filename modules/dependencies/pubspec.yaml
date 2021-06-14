@@ -25,7 +25,7 @@ dependencies:
   provider: ^5.0.0
   
   #State Management
-  flutter_bloc: ^7.0.1 
+  rxdart: ^0.27.1
 
 dev_dependencies:
   flutter_test:

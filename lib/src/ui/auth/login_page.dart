@@ -119,41 +119,49 @@ class _LoginPageState extends State<LoginPage> {
         context,
         listen: false,
       );
-      await firebaseAuthApi
-          .signIn(
+
+      var result = await firebaseAuthApi.signIn(
         email: _emailController.text,
         password: _passwordController.text,
-      )
-          .then((value) {
-        if (value is String) {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text('Falha na autenticação'),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(value),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text('Ok'),
-                  ),
+      );
+
+      if (result is String) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Falha na autenticação'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(result),
                 ],
-              );
-            },
-          );
-        } else {
-          Navigator.pushReplacementNamed(
-            context,
-            Routes.HOME_BASE_PAGE,
-          );
-        }
-      });
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        var userBloc = Provider.of<UserBloc>(context, listen: false);
+        var database = Provider.of<FirebaseFirestoreApi>(
+          context,
+          listen: false,
+        );
+        var profile = await database.getUserProfile;
+
+        if (profile != null) userBloc.addUserProfile(profile);
+
+        Navigator.pushReplacementNamed(
+          context,
+          Routes.HOME_BASE_PAGE,
+        );
+      }
     }
 
     setState(() => _isLoading = !_isLoading);

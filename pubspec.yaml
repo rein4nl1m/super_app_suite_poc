@@ -19,6 +19,12 @@ dependencies:
     path: modules/dependencies
   shared:
     path: modules/shared
+  
+  # Sub Apps
+  margem:
+    path: modules/apps/margem
+  offerta:
+    path: modules/apps/offerta
 
   cupertino_icons: ^1.0.2
 

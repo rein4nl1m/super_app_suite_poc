@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 Color margemPrimaryColor = Color(0xff4487c2);
+Color weekdayTagColor = Color(0xff78a6ce);
+Color calendarTagColor = Color(0xff99bddd);
+
+const offertaPrimaryColor = Color(0xffe5802b);
+// const offertaPrimaryColor = Color(0xffED522E);
+const offertaSecondaryColor = Color(0xffD8742A);
+const offertaSecondaryColor600 = Color(0x99D8742A);
 
 MaterialColor createMaterialColor(Color color) {
   List strengths = <double>[.05];
