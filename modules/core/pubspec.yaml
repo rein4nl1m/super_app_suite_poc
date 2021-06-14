@@ -11,6 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  dependencies:
+    path: ../dependencies
+  shared:
+    path: ../shared
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

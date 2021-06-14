@@ -57,7 +57,7 @@ class _PreAuthPageState extends State<PreAuthPage> {
                       style: TextStyle(color: margemPrimaryColor),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.SIGNIN);
+                      Navigator.pushNamed(context, Routes.REGISTER);
                     },
                   ),
                 ],

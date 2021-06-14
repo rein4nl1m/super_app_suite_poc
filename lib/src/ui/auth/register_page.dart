@@ -1,19 +1,21 @@
-import 'package:core/api/auth/firebase_auth_api.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'package:provider/provider.dart';
 
-class RecoverPasswordPage extends StatefulWidget {
-  const RecoverPasswordPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  _RecoverPasswordPageState createState() => _RecoverPasswordPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
+class _RegisterPageState extends State<RegisterPage> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
-  bool _isLoading = false;
+  TextEditingController _passwordController = TextEditingController();
+  bool _isRegistering = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Text(
-          'Recuperar Senha',
+          'Seja MpontoM!',
           style: TextStyle(color: margemPrimaryColor),
         ),
       ),
@@ -33,7 +35,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
           return Padding(
             padding: EdgeInsets.symmetric(
               vertical: constraints.maxHeight * .05,
-              horizontal: constraints.maxWidth * .13,
+              horizontal: constraints.maxWidth * .1,
             ),
             child: Form(
               key: _formKey,
@@ -41,7 +43,20 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   buildDescription,
-                  SizedBox(height: constraints.maxHeight * .08),
+                  SizedBox(height: constraints.maxHeight * .03),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      contentPadding: EdgeInsets.fromLTRB(6, 4, 6, 4),
+                      prefixIcon: Icon(Icons.person_outline_rounded),
+                      hintText: 'Nome',
+                    ),
+                    controller: _nameController,
+                    validator: InputAuthValidators.validateName,
+                  ),
+                  SizedBox(height: constraints.maxHeight * .02),
                   TextFormField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -54,8 +69,21 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
                     controller: _emailController,
                     validator: InputAuthValidators.validateEmail,
                   ),
-                  SizedBox(height: constraints.maxHeight * .04),
-                  _isLoading
+                  SizedBox(height: constraints.maxHeight * .02),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      contentPadding: EdgeInsets.fromLTRB(6, 4, 6, 4),
+                      prefixIcon: Icon(Icons.phone_outlined),
+                      hintText: 'Senha',
+                    ),
+                    controller: _passwordController,
+                    validator: InputAuthValidators.validatePassword,
+                  ),
+                  SizedBox(height: constraints.maxHeight * .02),
+                  _isRegistering
                       ? CircularProgressIndicator()
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -67,7 +95,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
                             padding: const EdgeInsets.symmetric(vertical: 20),
                           ),
                           child: Text('SOLICITAR'),
-                          onPressed: recover(context),
+                          onPressed: register(context),
                         ),
                 ],
               ),
@@ -78,27 +106,30 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
     );
   }
 
-  recover(BuildContext context) async {
-    setState(() => _isLoading = !_isLoading);
+  register(BuildContext context) async {
+    setState(() => _isRegistering = !_isRegistering);
 
     if (_formKey.currentState!.validate()) {
       var firebaseAuthApi = Provider.of<FirebaseAuthApi>(
         context,
         listen: false,
       );
-
-      await firebaseAuthApi.recoveryPassword(email: _emailController.text);
+      await firebaseAuthApi.register(
+        name: _nameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
 
       Navigator.pop(context);
     }
 
-    setState(() => _isLoading = !_isLoading);
+    setState(() => _isRegistering = !_isRegistering);
   }
 
   Center get buildDescription {
     return Center(
       child: Column(
-        children: kRecoverPasswordDescription.map<Widget>((phrase) {
+        children: kSigninDescription.map<Widget>((phrase) {
           return Text(
             phrase,
             style: const TextStyle(
