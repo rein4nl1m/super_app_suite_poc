@@ -4,6 +4,7 @@ import 'package:mpontom_suite_poc/src/ui/auth/login_page.dart';
 import 'package:mpontom_suite_poc/src/ui/auth/pre_auth_page.dart';
 import 'package:mpontom_suite_poc/src/ui/auth/recover_password_page.dart';
 import 'package:mpontom_suite_poc/src/ui/auth/register_page.dart';
+import 'package:mpontom_suite_poc/src/ui/home/home_base_page.dart';
 import 'package:mpontom_suite_poc/src/ui/pages/splash_screen.dart';
 import 'package:shared/shared.dart' show SharedNavigation;
 
@@ -22,6 +23,8 @@ class AppPageRouter {
         return SharedNavigation.rightToLeftTransition(
           page: RecoverPasswordPage(),
         );
+      case Routes.HOME_BASE_PAGE:
+        return MaterialPageRoute<dynamic>(builder: (_) => HomeBasePage());
       default:
         return MaterialPageRoute<dynamic>(
           builder: (_) => Scaffold(

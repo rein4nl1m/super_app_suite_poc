@@ -41,7 +41,7 @@ class InputAuthValidators {
 
     if (password.isEmpty) {
       return 'Senha não pode ser vazia';
-    } else if (password.length > 6 && password.length <= 10) {
+    } else if (password.length < 6 && password.length > 10) {
       return 'Senha deve ter entre 6 e 10 números';
     }
 

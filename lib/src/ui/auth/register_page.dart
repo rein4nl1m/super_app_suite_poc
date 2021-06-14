@@ -76,15 +76,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       contentPadding: EdgeInsets.fromLTRB(6, 4, 6, 4),
-                      prefixIcon: Icon(Icons.phone_outlined),
+                      prefixIcon: Icon(Icons.lock_outlined),
                       hintText: 'Senha',
                     ),
+                    obscureText: true,
                     controller: _passwordController,
                     validator: InputAuthValidators.validatePassword,
                   ),
                   SizedBox(height: constraints.maxHeight * .02),
                   _isRegistering
-                      ? CircularProgressIndicator()
+                      ? Center(child: CircularProgressIndicator())
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: margemPrimaryColor,
@@ -95,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             padding: const EdgeInsets.symmetric(vertical: 20),
                           ),
                           child: Text('SOLICITAR'),
-                          onPressed: register(context),
+                          onPressed: () => register(context),
                         ),
                 ],
               ),

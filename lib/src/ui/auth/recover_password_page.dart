@@ -56,7 +56,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
                   ),
                   SizedBox(height: constraints.maxHeight * .04),
                   _isLoading
-                      ? CircularProgressIndicator()
+                      ? Center(child: CircularProgressIndicator())
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: margemPrimaryColor,
@@ -67,7 +67,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
                             padding: const EdgeInsets.symmetric(vertical: 20),
                           ),
                           child: Text('SOLICITAR'),
-                          onPressed: recover(context),
+                          onPressed: () => recover(context),
                         ),
                 ],
               ),

@@ -16,6 +16,11 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
+  bool _isObscure = true;
+
+  void passwordVisibility() {
+    setState(() => _isObscure = !_isObscure);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +63,14 @@ class _LoginPageState extends State<LoginPage> {
                     contentPadding: EdgeInsets.fromLTRB(6, 4, 6, 4),
                     prefixIcon: Icon(Icons.lock_outlined),
                     hintText: 'Senha',
-                    suffixIcon: Icon(
-                      Icons.visibility,
+                    suffixIcon: IconButton(
+                      onPressed: () => passwordVisibility(),
+                      icon: Icon(
+                        _isObscure ? Icons.visibility : Icons.visibility_off,
+                      ),
                     ),
                   ),
+                  obscureText: _isObscure,
                   controller: _passwordController,
                   validator: InputAuthValidators.validatePassword,
                 ),
@@ -81,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: constraints.maxHeight * .02),
                 _isLoading
-                    ? CircularProgressIndicator()
+                    ? Center(child: CircularProgressIndicator())
                     : ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: margemPrimaryColor,
@@ -92,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                           padding: const EdgeInsets.symmetric(vertical: 20),
                         ),
                         child: Text('ENTRAR'),
-                        onPressed: authenticate(context),
+                        onPressed: () => authenticate(context),
                       ),
               ],
             ),
@@ -110,11 +119,41 @@ class _LoginPageState extends State<LoginPage> {
         context,
         listen: false,
       );
-      firebaseAuthApi.signIn(
+      await firebaseAuthApi
+          .signIn(
         email: _emailController.text,
         password: _passwordController.text,
-      );
-      Navigator.pop(context);
+      )
+          .then((value) {
+        if (value is String) {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text('Falha na autenticação'),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(value),
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text('Ok'),
+                  ),
+                ],
+              );
+            },
+          );
+        } else {
+          Navigator.pushReplacementNamed(
+            context,
+            Routes.HOME_BASE_PAGE,
+          );
+        }
+      });
     }
 
     setState(() => _isLoading = !_isLoading);
