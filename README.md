@@ -20,19 +20,22 @@ mpontom
 └─── lib
 │   │
 │   └─── src
-│       │
-│       └─── routes
-│       │
-│       └─── ui
-│       │   │
-│       │   └─── auth 
-│       │   │
-│       │   └─── home
-│       │   │
-│       │   └─── pages
-│       │       
-│       └─── routes
-│       main.dart
+│   │   │
+│   │   └─── routes
+│   │   │
+│   │   └─── ui
+│   │   │   │
+│   │   │   └─── auth 
+│   │   │   │
+│   │   │   └─── home
+│   │   │   │
+│   │   │   └─── pages
+│   │   │       
+│   │   └─── routes
+│   │   │       
+│   │   └─── app.dart
+│   │
+│   └─── main.dart
 │
 └─── modules
     │
