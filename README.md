@@ -1,16 +1,54 @@
 # mpontom_suite_poc
 
-A new Flutter project.
+POC para Super App da MpontoM: Unificação dos apps que se conversam.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Funcionalidades
+- Autenticação
+- Navegação entre apps
+- Navegação nos sub apps
 
-A few resources to get you started if this is your first Flutter project:
+## Estrutura do projeto
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+```
+mpontom
+│   
+└─── android (estrutura de app android nativo)
+│
+└─── ios (estrutura de app ios nativo)
+│
+└─── lib
+│   │
+│   └─── src
+│       │
+│       └─── routes
+│       │
+│       └─── ui
+│       │   │
+│       │   └─── auth 
+│       │   │
+│       │   └─── home
+│       │   │
+│       │   └─── pages
+│       │       
+│       └─── routes
+│       main.dart
+│
+└─── modules
+    │
+    └─── apps
+    │   │
+    │   └─── margem
+    │   │
+    │   └─── offerta
+    │
+    └─── core (apis, gerenciamento de estado, etc)
+    │
+    └─── dependencies (centralização de libs do projeto)
+    │
+    └─── shared (widgets, constantes e funções)
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Permissões do app
+
+Por padrão, o usuário é criado somente com permissão pro Margem e pode ser alterada pra exibir também o oferta.
