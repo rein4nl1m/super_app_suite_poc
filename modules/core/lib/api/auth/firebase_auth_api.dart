@@ -81,6 +81,10 @@ class FirebaseAuthApi {
     }
   }
 
+  Future<User?> get currentUser async {
+    return _auth.currentUser;
+  }
+
   Future<void> signOut() async {
     await _auth.signOut();
   }
