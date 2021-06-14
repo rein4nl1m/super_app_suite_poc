@@ -33,8 +33,8 @@ class _LoginPageState extends State<LoginPage> {
           ),
           child: Form(
             key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            child: ListView(
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(

@@ -111,15 +111,26 @@ class _RegisterPageState extends State<RegisterPage> {
     setState(() => _isRegistering = !_isRegistering);
 
     if (_formKey.currentState!.validate()) {
-      var firebaseAuthApi = Provider.of<FirebaseAuthApi>(
-        context,
-        listen: false,
+      String name = _nameController.text;
+      String email = _emailController.text;
+      String password = _passwordController.text;
+      var firebaseAuthApi =
+          Provider.of<FirebaseAuthApi>(context, listen: false);
+      var firebaseFirestoreApi =
+          Provider.of<FirebaseFirestoreApi>(context, listen: false);
+
+      var user = await firebaseAuthApi.register(
+        name: name,
+        email: email,
+        password: password,
       );
-      await firebaseAuthApi.register(
-        name: _nameController.text,
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
+
+      if (user != null) {
+        await firebaseFirestoreApi.createUserProfile(
+          name: name,
+          email: email,
+        );
+      }
 
       Navigator.pop(context);
     }

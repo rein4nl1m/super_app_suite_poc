@@ -22,11 +22,6 @@ class FirebaseAuthApi {
         password: password,
       );
 
-      if (await isVerified()) {
-        signOut();
-        return 'Email não verificado, verifique sua caixa de entrada';
-      }
-
       return userCredential;
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
@@ -42,12 +37,6 @@ class FirebaseAuthApi {
     } catch (e) {
       print('signIn error: $e');
     }
-  }
-
-  Future<bool> isVerified() async {
-    User? user = _auth.currentUser;
-
-    return user!.emailVerified;
   }
 
   Future<dynamic> register({
@@ -68,10 +57,6 @@ class FirebaseAuthApi {
       await user!.updateDisplayName(name);
       await user.reload();
       user = _auth.currentUser;
-
-      if (!user!.emailVerified) {
-        user.sendEmailVerification();
-      }
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case RegisterExceptions.WEAK_PASSWORD:
