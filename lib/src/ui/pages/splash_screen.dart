@@ -1,13 +1,10 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:mpontom_suite_poc/src/ui/pages/login_page.dart';
+import 'package:mpontom_suite_poc/src/routes/app_routes.dart';
 import 'package:shared/shared.dart';
 import 'package:package_info/package_info.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const routeName = "/splash";
-
   const SplashScreen({
     Key? key,
   }) : super(key: key);
@@ -29,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _loginNavigation() {
     Navigator.of(context).pushNamedAndRemoveUntil(
-      LoginPage.routeName,
+      Routes.PRE_AUTH,
       (route) => false,
     );
   }

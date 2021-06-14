@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "685134841497",
+    "project_id": "mpontom-suite-poc",
+    "storage_bucket": "mpontom-suite-poc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685134841497:android:56dd86d20c5c12d8d5da08",
+        "android_client_info": {
+          "package_name": "br.com.reinanlima.mpontom_suite_poc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685134841497-ppgmviusmjbtp7atv4e27m517t6ob43v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk3hhldNjZAoKF4YinJ4MCmeSxCz1Dv_A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685134841497-ppgmviusmjbtp7atv4e27m517t6ob43v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

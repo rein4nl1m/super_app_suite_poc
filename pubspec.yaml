@@ -13,10 +13,12 @@ dependencies:
     sdk: flutter
 
   # Modules
-  shared:
-    path: modules/shared
+  core:
+    path: modules/core
   dependencies:
     path: modules/dependencies
+  shared:
+    path: modules/shared
 
   cupertino_icons: ^1.0.2
 

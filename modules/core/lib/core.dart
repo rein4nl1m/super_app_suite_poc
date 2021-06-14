@@ -1,7 +1,12 @@
 library core;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'package:firebase_core/firebase_core.dart';
+export 'api/auth/firebase_auth_api.dart';
+export 'api/database/firebase_firestore_api.dart';
+export 'di/injection_container.dart';
+
+class Core {
+  static initApp() async {
+    await Firebase.initializeApp();
+  }
 }
