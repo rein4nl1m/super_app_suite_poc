@@ -1,6 +1,6 @@
-# mpontom_suite_poc
+# suite_poc
 
-POC para Super App da MpontoM: Unificação dos apps que se conversam.
+POC para Super App: Unificação dos apps que se conversam.
 
 
 ## Funcionalidades
@@ -54,4 +54,4 @@ mpontom
 
 ## Permissões do app
 
-Por padrão, o usuário é criado somente com permissão pro Margem e pode ser alterada pra exibir também o oferta.
+Por padrão, o usuário é criado somente com permissão e pode ser alterada pra exibir também o oferta.
