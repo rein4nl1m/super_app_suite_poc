@@ -54,4 +54,4 @@ mpontom
 
 ## Permissões do app
 
-Por padrão, o usuário é criado somente com permissão e pode ser alterada pra exibir também o oferta.
+Por padrão, o usuário é criado somente com permissão do modulo principal e pode ser alterada pra exibir também o oferta.
